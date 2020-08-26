@@ -31,7 +31,7 @@ const routes: Routes = [
   {path: 'contracts/create', component: ContractCreateComponent},
 
   {  path: '',
-  redirectTo: '/helloworld',
+  redirectTo: '/customers',
   pathMatch: 'full'},
 
   {path: 'helloworld', component: HelloWorldComponent}
