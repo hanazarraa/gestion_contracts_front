@@ -1,0 +1,24 @@
+<app-menu></app-menu>
+<div class="container col-lg-6">
+    <h1 class="text-center">User Details</h1>
+      <div class="card">
+        <div class="card-body">
+     
+            <div>
+                 <label><b>First Name: </b></label> {{user.firstname}}
+            </div>
+            <div>
+               <label><b>Last Name: </b></label> {{user.lastname}}
+            </div>
+            <div>
+               <label><b>Username: </b></label> {{user.username}}
+            </div> 
+            <button (click)="list()" class="btn btn-primary">Back to User List</button><br>
+ 
+        </div>
+      </div>
+</div>   
+
+
+
+<app-footer></app-footer>

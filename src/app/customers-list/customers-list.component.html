@@ -1,0 +1,59 @@
+<div class="panel panel-primary">
+    <app-menu></app-menu>
+    <div class="panel-heading">
+      <h2 style="margin-left: 10px;">Customers List</h2>
+    </div>
+    <div class="panel-body">
+        <button class="btn btn-danger"  (click)="addCustomer()" style="margin-bottom: 10px;margin-left:10px"> Add Customer</button>
+       <br>
+   <!----    <div class="col-md-8">
+       <div class="input-group mb-3">
+
+       <input type="text" class="form-control" placeholder="Search by firstname" name="firstname"         [(ngModel)]="firstname"
+       />
+     <input type="text" class="form-control" name="lastname" placeholder="Search by lastname" style="margin-left:  10px;"/>
+     <input type="text" class="form-control" name="cin" placeholder="Search by cin" style="margin-left:  10px;"/>
+
+       <div class="input-group-append">
+
+        <button
+          class="btn btn-outline-secondary" type="button" (click)="search()">
+          Search
+        </button>
+      </div>
+       </div>
+    </div>-->
+    <div class="search-hero">
+      <input class="form-control" type="text" name="search" [(ngModel)]="searchText"  placeholder="&#61442;  Start searching for a customer by firstname or lastname or Address or cin">
+    </div>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>email</th>
+            <th>CIN</th>
+            <th>Address</th>
+            <th>Birth date</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          <tr  *ngFor="let customer of customers | filter:searchText">
+            <td>{{customer.fname}}</td>
+            <td>{{customer.lastname}}</td>
+            <td>{{customer.email}}</td>
+            <td>{{customer.cin}}</td>
+            <td>{{customer.address}}</td>
+            <td>{{customer.birthdate|  date:'dd'}}/{{customer.birthdate | date:'MM'}}/{{customer.birthdate | date:'yyyy'}}</td>
+            <td><button class="btn btn-danger"(click)="customerDelete(customer.customer_id)">Delete</button>
+                <button  class="btn btn-info" style="margin-left: 10px;/*width:70px;height:27px;*/" (click)="customerUpdate(customer.customer_id)">Update</button>
+                <button  class="btn btn-info" style="margin-left: 10px" (click)="customerDetails(customer.customer_id)">Details</button>
+            </td>
+          </tr>
+        </tbody>
+        
+      </table>
+    </div>
+  </div>
+  <app-footer></app-footer>

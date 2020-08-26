@@ -1,0 +1,33 @@
+<app-menu></app-menu>
+<div class="container col-lg-6">
+    <h1 class="text-center">Customer Details</h1>
+      <div class="card">
+        <div class="card-body">
+     
+            <div>
+                 <label><b>First Name: </b></label> {{customer.firstname}}
+            </div>
+            <div>
+               <label><b>Last Name: </b></label> {{customer.lastname}}
+            </div>
+            <div>
+               <label><b>Email: </b></label> {{customer.email}}
+            </div> 
+            <div>
+                <label><b>Address: </b></label> {{customer.address}}
+             </div> 
+             <div>
+                <label><b>Birth Date: </b></label> {{customer.birthdate|  date:'dd'}}/{{customer.birthdate | date:'MM'}}/{{customer.birthdate | date:'yyyy'}}
+             </div> 
+             <div>
+                <label><b>CIN: </b></label> {{customer.cin}}
+             </div> 
+            <button (click)="list()" class="btn btn-primary">Back to Customer List</button><br>
+ 
+        </div>
+      </div>
+</div>   
+
+
+
+<app-footer></app-footer>

@@ -1,0 +1,21 @@
+<app-menu></app-menu>
+<div class="container">
+    <div class="slide-wrapper">
+      <app-slider [isIn]="current === 0" [left]="isLeftTransition(0)">
+        0 hey asma
+      </app-slider>
+      <app-slider [isIn]="current === 1" [left]="isLeftTransition(1)">
+        1 
+      </app-slider>
+      <app-slider [isIn]="current === 2" [left]="isLeftTransition(2)">
+        2 
+      </app-slider>
+    </div>
+  
+    Current: {{current}}<br/>
+    Prev: {{prev}} <br/>
+  
+    <button (click)="onPrev()" mat-stroked-button>Prev</button>
+    <button (click)="onNext()" mat-stroked-button>Next</button>
+  </div>
+<app-footer></app-footer>

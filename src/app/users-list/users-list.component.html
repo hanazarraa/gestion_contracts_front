@@ -1,0 +1,30 @@
+<div class="panel panel-primary">
+  <app-menu></app-menu>
+  <div class="panel-heading">
+    <h2>Users List</h2>
+  </div>
+  <div class="panel-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Firstname</th>
+          <th>Lastname</th>
+          <th>Username</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users | async">
+          <td>{{user.firstname}}</td>
+          <td>{{user.lastname}}</td>
+          <td>{{user.username}}</td>
+          <td><button class="btn btn-danger"(click)="userDelete(user.user_id)">Delete</button>
+              <button  class="btn btn-info" style="margin-left: 10px;/*width:70px;height:27px;*/" (click)="userUpdate(user.user_id)">Update</button>
+              <button  class="btn btn-info" style="margin-left: 10px" (click)="userDetails(user.user_id)">Details</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<app-footer></app-footer>

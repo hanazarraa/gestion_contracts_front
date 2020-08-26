@@ -1,0 +1,58 @@
+<div class="panel panel-primary">
+    <app-menu></app-menu>
+    <div class="panel-heading">
+      <h2 style="margin-left: 10px;">Customers List</h2>
+    </div>
+    <div class="panel-body">
+       <br>
+       <!--<div class="col-md-8">
+       <div class="input-group mb-3">
+
+       <input type="text" class="form-control" placeholder="Search by firstname" name="firstname"         [(ngModel)]="firstname"
+       />
+     <input type="text" class="form-control" name="lastname" placeholder="Search by lastname" style="margin-left:  10px;"/>
+     <input type="text" class="form-control" name="cin" placeholder="Search by cin" style="margin-left:  10px;"/>
+
+       <div class="input-group-append">
+
+        <button
+          class="btn btn-outline-secondary" type="button" >
+          Search
+        </button>
+      </div>
+       </div>
+    </div>-->
+    <div class="search-hero">
+      <input class="form-control" type="text" name="search" [(ngModel)]="searchText"  placeholder="&#61442;  Start searching for a hero by id or name or country">
+    </div>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>email</th>
+            <th>CIN</th>
+            <th>Address</th>
+            <th>Birth date</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          <tr  *ngFor="let customer of customers">
+            <td>{{customer.fname}}</td>
+            <td>{{customer.lastname}}</td>
+            <td>{{customer.email}}</td>
+            <td>{{customer.cin}}</td>
+            <td>{{customer.address}}</td>
+            <td>{{customer.birthdate|  date:'dd'}}/{{customer.birthdate | date:'MM'}}/{{customer.birthdate | date:'yyyy'}}</td>
+            <td><button class="btn btn-danger">Delete</button>
+                <button  class="btn btn-info" style="margin-left: 10px;/*width:70px;height:27px;*/" >Update</button>
+                <button  class="btn btn-info" style="margin-left: 10px" >Details</button>
+            </td>
+          </tr>
+        </tbody>
+        
+      </table>
+    </div>
+  </div>
+  <app-footer></app-footer>

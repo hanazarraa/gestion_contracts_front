@@ -1,0 +1,68 @@
+<app-menu></app-menu> 
+<div class="container col-lg-6">
+    <h1 class="text-center">Create a new Customer</h1>
+    <div class="card">
+      <div class="card-body">
+        <form class="form-group"  #customerform="ngForm" (ngSubmit)="onSubmit(customerform)" novalidate >
+
+          <div class="form-group" [class.has-error]="fnameControl.invalid">
+            <label for="fname" class="contol-label">First Name :</label>
+            <input type="text" class="form-control" id="fname"   [(ngModel)]="customerModel.fname" placeholder="Enter First Name"
+              name="fname" #fnameControl="ngModel" required>
+            <!----  <div [hidden]="fnameControl.valid || !fnameControl.touched" class="alert alert-danger">
+               First name is required
+                
+            </div>-->
+              <span class="help-block" *ngIf="fnameControl.invalid" style="color: red;">
+                First name is required
+              </span>
+          </div>
+          
+          
+          <div class="form-group" [class.has-error]="lastnameControl.invalid">
+            <label for="lastname" class="contol-label">Last Name:</label>
+            <input type="text" class="form-control" [(ngModel)]="customerModel.lastname" id="lastname" placeholder="Enter Last Name"
+              name="lastname" #lastnameControl="ngModel" required>
+              <span class="help-block" *ngIf="lastnameControl.invalid" style="color: red;">
+                Last name is required
+              </span>
+          </div>
+          <div class="form-group" [class.has-error]="emailControl.invalid">
+            <label for="email" class="contol-label">Email:</label>
+            <input type="text" class="form-control" [(ngModel)]="customerModel.email" id="email" placeholder="Enter Email"
+              name="email" #emailControl="ngModel" required [email]="true">
+              <span class="help-block" *ngIf="emailControl.invalid" style="color: red;">
+                Email is required
+              </span>
+          </div>
+          <div class="form-group" [class.has-error]="birthdateControl.invalid">
+            <label for="birthdate" class="contol-label">Birth Date:</label>
+            <input type="date" class="form-control" [(ngModel)]="customerModel.birthdate" id="birthdate" placeholder="Enter Birthdate"
+              name="birthdate" #birthdateControl="ngModel" required>
+              <span class="help-block" *ngIf="birthdateControl.invalid" style="color: red;">
+                Birthdate is required
+              </span>
+          </div>
+          <div class="form-group" [class.has-error]="addressControl.invalid">
+            <label for="address" class="contol-label">Address:</label>
+            <input type="text" class="form-control" [(ngModel)]="customerModel.address" id="address" placeholder="Enter address"
+              name="address" #addressControl="ngModel" required>
+              <span class="help-block" *ngIf="addressControl.invalid" style="color: red;">
+                Address is required
+              </span>
+          </div>
+          <div class="form-group" [class.has-error]="cinControl.invalid">
+            <label for="cin" class="contol-label">CIN:</label>
+            <input type="text" class="form-control" [(ngModel)]="customerModel.cin" id="cin" placeholder="Enter CIN"
+              name="cin" #cinControl="ngModel" required>
+              <span class="help-block" *ngIf="cinControl.invalid" style="color: red;">
+                CIN is required
+              </span>
+          </div>
+          <button  class="btn btn-success">Create</button>
+
+        </form>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
