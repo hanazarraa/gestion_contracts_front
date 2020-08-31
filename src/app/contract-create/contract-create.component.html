@@ -1,21 +1,115 @@
 <app-menu></app-menu>
 <div class="container">
     <div class="slide-wrapper">
-      <app-slider [isIn]="current === 0" [left]="isLeftTransition(0)">
-        0
-      </app-slider>
-      <app-slider [isIn]="current === 1" [left]="isLeftTransition(1)">
-        1 
-      </app-slider>
-      <app-slider [isIn]="current === 2" [left]="isLeftTransition(2)">
-        2 
-      </app-slider>
-    </div>
-  
-    Current: {{current}}<br/>
-    Prev: {{prev}} <br/>
-  
-    <button (click)="onPrev()" mat-stroked-button>Prev</button>
-    <button (click)="onNext()" mat-stroked-button>Next</button>
+       
+        <div class="container col-lg-6">
+        <h1 class="text-center">Create a new Contract</h1>
+        <div class="card">
+            <div class="card-body">
+                <form class="form-group"     >
+
+                <app-slider *ngIf="current === 0" [left]="isLeftTransition(0)">
+                   <!---- <div class="form-group">
+                        <label for="customer" class="contol-label">customer</label>
+                        <input type="text" class="form-control" id="customer"   [(ngModel)]="contractModel.customer" placeholder="Enter the customer"
+                          name="customer" #fcustomerControl="ngModel" required>
+                   </div>  -->
+                   <!--<mat-form-field>
+                    <mat-select  placeholder="customer" #singleSelect>
+                      <mat-option>
+                        <ngx-mat-select-search ></ngx-mat-select-search>
+                      </mat-option>
+                      <mat-option *ngFor="let customer of customers | async" >
+                        {{customer.fname}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>-->
+                  <div class="form-group">
+                    <label for="customer" class="contol-label">Select the customer</label>
+
+                  <ng-select [items]="customers"
+                  bindLabel="cin"
+                  [searchFn]="searchMe"
+                  placeholder="Select customer"
+                  [(ngModel)]="contractModel.customer" name="customer" id="customer" (change)="getCustomer()">
+       </ng-select>
+    </div>   
+    <div *ngIf="contractModel.customer" class="card-body">
+    <div>
+      <label><b>First Name:  </b></label> {{contractModel.customer.fname}}
+ </div>
+ <div>
+    <label><b>Last Name: </b></label> {{contractModel.customer.lastname}}
+ </div>
+ <div>
+    <label><b>Email: </b></label>{{contractModel.customer.email}}
+ </div> 
+ <div>
+     <label><b>Address: </b></label> {{contractModel.customer.address}}
+  </div> 
+  <div>
+     <label><b>Birth Date: </b></label> {{contractModel.customer.birthdate|  date:'dd'}}/{{contractModel.customer.birthdate | date:'MM'}}/{{contractModel.customer.birthdate | date:'yyyy'}}
+  </div> 
+  <div>
+     <label><b>CIN: </b></label> {{contractModel.customer.cin}}
+  </div> 
   </div>
+                  </app-slider>
+                  <app-slider *ngIf="current === 1" [left]="isLeftTransition(1)">
+                    <div class="form-group">
+                        <label for="market" class="contol-label">Select the Market</label>
+        
+                          <ng-select [items]="markets"
+                          bindLabel="marketDescription"
+                          
+                    
+                          placeholder="Select market"
+                          [(ngModel)]="contractModel.market"
+                          name="market" id="market"
+                          (change)="getMarket()">
+                         </ng-select>
+                        </div>   
+                  </app-slider>
+                  <app-slider *ngIf="current === 2" [left]="isLeftTransition(2)">
+                    <div class="form-group">
+                    <label for="customer" class="contol-label">Select the offer</label>
+    
+                      <ng-select [items]="contractModel.market.offers"
+                      bindLabel="offerDescription"
+                      [searchFn]="searchOffer"
+                      placeholder="Select offer"
+                      [(ngModel)]="contractModel.offer"
+                      name="offer"
+                      id="offer">
+                     </ng-select>
+                    </div>   
+                  </app-slider>
+                  <app-slider *ngIf="current === 3" [left]="isLeftTransition(3)">
+                    <div class="form-group">
+                    <label for="customer" class="contol-label">Select the phone Number</label>
+    
+                      <ng-select [items]="phone_numbers"
+                      bindLabel="phonenumber"
+                      [searchFn]="searchPhone"
+                      placeholder="Select phone number"
+                      [(ngModel)]="contractPhoneNumberModel.phoneNumber"
+                      name="phoneNumber" id="phoneNumber">
+                     </ng-select>
+                    </div>   
+                  </app-slider>
+                  Current: {{current}}<br/>
+                  Prev: {{prev}} <br/>
+                
+                  <button (click)="onPrev()" [disabled]="current===0"  mat-stroked-button class="btn btn-primary"  style="margin-right: 10px;">Prev</button>
+
+                  <button  (click)="onNext()"[disabled]="current===3" mat-stroked-button class="btn btn-primary" style="margin-right: 10px;">Next</button>
+                  <button (click)="onSubmit(contractForm)" [disabled]="current !==3" mat-stroked-button class="btn btn-success">Create</button>
+
+               </form>
+            </div>
+        </div>
+    </div>
+   </div>
+    
+</div>
 <app-footer></app-footer>

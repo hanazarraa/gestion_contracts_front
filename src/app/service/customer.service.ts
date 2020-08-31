@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Customer } from '../model/Customer';
+import  Customer  from '../model/Customer';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ export class CustomerService {
   private customersUrl: string;
  
   constructor(private http: HttpClient) {
-    this.customersUrl = 'http://localhost:8081/customers';
+    this.customersUrl = 'http://localhost:8080/customers';
   }
  
   public findAll(): Observable<any[]> {

@@ -1,4 +1,6 @@
-export class Customer {
+import { Contract } from './Contract';
+
+export default class Customer {
     id: string;
     fname:string;
     lastname:string;
@@ -6,7 +8,8 @@ export class Customer {
     cin: string;
     address:string;
     birthdate:string;
-    User(firstname,lastname,email,cin,address,birthdate){
+    contracts:[Contract];
+    /*Customer(firstname,lastname,email,cin,address,birthdate){
         this.fname=firstname;
         this.lastname=lastname;
         this.email=email;
@@ -14,5 +17,5 @@ export class Customer {
         this.address=address;
         this.birthdate=birthdate;
     }
-    
+    */
 }

@@ -14,13 +14,13 @@ export class AuthenticationService {
 
   public username: String;
   public password: String;
-  private baseUrl="http://localhost:8081/users/getAll";
+  private baseUrl="http://localhost:8080/users/getAll";
   constructor(private http: HttpClient) {
 
   }
   LoginUser(user:User):Observable<any>{
     console.log(user);
-    return this.http.post<any>(`http://localhost:8081/users/login`,user);
+    return this.http.post<any>(`http://localhost:8080/users/login`,user);
   }
   getUsersList(): Observable<any> {
     return this.http.get(`${this.baseUrl}`);
@@ -28,7 +28,7 @@ export class AuthenticationService {
 
   authenticationService(user:User) {
     console.log(user.username);
-    return this.http.post<any>(`http://localhost:8081/users/login`,user);
+    return this.http.post<any>(`http://localhost:8080/users/login`,user);
    /*return this.http.post(`http://localhost:8080/users/login`,
       { headers: { authorization: this.createBasicAuthToken(username, password) } }).pipe(map((res) => {
      /*   console.log(res);

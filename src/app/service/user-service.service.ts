@@ -11,7 +11,7 @@ export class UserServiceService {
   private usersUrl: string;
  
   constructor(private http: HttpClient) {
-    this.usersUrl = 'http://localhost:8081/users';
+    this.usersUrl = 'http://localhost:8080/users';
   }
  
   public findAll(): Observable<User[]> {
@@ -23,7 +23,7 @@ export class UserServiceService {
   }
   register(user:User):Observable<any>{
     console.log("hana");
-    return this.http.post<any>(`http://localhost:8081/users/create`,user);
+    return this.http.post<any>(`http://localhost:8080/users/create`,user);
   }
   getUserById(id:any):Observable<any>{
     return this.http.get<any>(`${this.usersUrl}/${id}`,id);

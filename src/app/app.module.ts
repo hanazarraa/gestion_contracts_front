@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -27,7 +28,10 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { ContractCreateComponent } from './contract-create/contract-create.component';
 import { SliderComponent } from './slider/slider.component';
 
-
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,9 +57,13 @@ import { SliderComponent } from './slider/slider.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    NgxMatSelectSearchModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule, 
+    MatSelectModule,
 
-   // NgSelectModule
+    NgSelectModule
 
 
   ],
