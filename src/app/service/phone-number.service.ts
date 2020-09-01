@@ -20,4 +20,8 @@ export class PhoneNumberService {
   public findFreePhoneNumbers():Observable<any[]>{
         return this.http.get<PhoneNumber[]>(this.phonesUrl+"/free");
   }
+  updatePhoneNumber(id:any,phone_number:any):Observable<any>{
+    return this.http.put(`${this.phonesUrl}/${id}`,phone_number);
+
+  }
 }

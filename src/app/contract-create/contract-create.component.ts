@@ -10,6 +10,9 @@ import { PhoneNumberService } from '../service/phone-number.service';
 import { MarketService } from '../service/market.service';
 import { ContractService } from '../service/contract.service';
 import { ContractPhoneNumber } from '../model/ContractPhoneNumber';
+import { ContractPhonenumberService } from '../service/contract-phonenumber.service';
+import { Observable } from 'rxjs';
+import { PhoneNumber } from '../model/PhoneNumber';
 
 @Component({
   selector: 'app-contract-create',
@@ -28,6 +31,7 @@ export class ContractCreateComponent implements OnInit {
   offers:any;
   phone_numbers:any;
   contractModel=new Contract();
+  PhoneNumberModel =new PhoneNumber();
    customers:any;
    customer:any;
    offer:any;
@@ -53,25 +57,71 @@ export class ContractCreateComponent implements OnInit {
   }
   onSubmit(form:FormGroup){
   // console.log(form);
-   console.log(this.contractModel);
-  
-  // this.contractPhoneNumberModel.contract=this.contractModel;
+   //console.log(this.PhoneNumberModel);
+   //this.contractPhoneNumberModel.phoneNumber=this.PhoneNumberModel;
+
+   this.contractPhoneNumberModel.contract=this.contractModel;
    console.log(this.contractPhoneNumberModel);
-   //this.contractModel.contractsphonenumbers.push(this.contractPhoneNumberModel);
    this.contractService.save(this.contractModel)
-   //  .pipe(first())
+                        .subscribe(data =>{
+                          console.log(data);
+                          this.contractPhoneNumberModel.contract=data;
+                        
+    this.contractPhoneNumberService.save(this.contractPhoneNumberModel)
+        .subscribe(
+          data=>{
+            console.log(data);
+
+          },error=>{
+            console.log(error);
+          }
+        )
+      },
+      error=>{
+        console.log(error);
+      });
+  //
+   //console.log(this.contractPhoneNumberModel);
+   //this.contractModel.contractsphonenumbers.push(this.contractPhoneNumberModel);
+   /*this.contractService.save(this.contractModel)
+  
      .subscribe(
          data => {
            console.log(data);
-           console.log("success");
+           this.contractPhoneNumberModel.contract=data;
+           console.log(this.contractPhoneNumberModel.phoneNumber.id);
+           
+           /*this.contractPhoneNumberService.save(this.contractPhoneNumberModel)
+           .subscribe(
+            data=>{
+              this.c=data;
+              console.log(data);
+            },
+            error=>{
+              console.log(error);
+            }
+          );*/
+
+           /*this.contractPhoneNumberService.save(this.contractPhoneNumberModel)
+                .subscribe(
+                  data=>{
+                    console.log(data);
+                    console.log("success")
+                  }
+                  ,error=>{console.log(error);
+                  }
+                );*/
+
+           //console.log("success");
            //  this.alertService.success('Registration successful', true);
             // this.router.navigate(['/customers']);
-         },
-         error => {
-           console.log(error);
-            // this.alertService.error(error);
-             this.loading = false;
-         });
+      //   },
+       //  error => {
+          // console.log(error);
+          //  // this.alertService.error(error);
+        //     this.loading = false;
+       //  });
+    
 
   }
   search(): void {
@@ -106,7 +156,8 @@ export class ContractCreateComponent implements OnInit {
     private offerService :OfferService,
     private phoneNumberService:PhoneNumberService,
     private marketService:MarketService,
-    private contractService:ContractService
+    private contractService:ContractService,
+    private contractPhoneNumberService:ContractPhonenumberService
     
    ) { 
 
