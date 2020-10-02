@@ -15,6 +15,7 @@ import { CustomerDetailsComponent } from './customer-details/customer-details.co
 import { CustomerUpdateComponent } from './customer-update/customer-update.component';
 import { CustomerSearchComponent } from './customer-search/customer-search.component';
 import { ContractCreateComponent } from './contract-create/contract-create.component';
+import { ContractListComponent } from './contract-list/contract-list.component';
 
 
 const routes: Routes = [
@@ -29,12 +30,13 @@ const routes: Routes = [
   {path: 'customers/details/:id', component: CustomerDetailsComponent},
   {path: 'customers/update/:id', component: CustomerUpdateComponent},
   {path: 'contracts/create', component: ContractCreateComponent},
+  {path :'contracts',component:ContractListComponent},
 
   {  path: '',
-  redirectTo: '/customers',
+  redirectTo: '/login',
   pathMatch: 'full'},
 
-  {path: 'helloworld', component: HelloWorldComponent}
+  {path: 'hello', component: HelloWorldComponent}
 
 
 ];

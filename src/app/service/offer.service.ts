@@ -16,5 +16,8 @@ export class OfferService {
   public findAll(): Observable<any[]> {
     return this.http.get<Offer[]>(this.offersUrl+"/AllOffers");
   }
+  /*public findByMarket(market):Observable<any[]>{
+      //return this.http.get<Offer[]>(this.offersUrl+"/AllOffers",market)
+  }*/
 
 }

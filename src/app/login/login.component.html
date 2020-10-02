@@ -1,24 +1,29 @@
-<div class="container col-lg-6">
-    <h1 class="text-center">Login</h1>
-    <div class="card">
+<!--<body style="background-image: url('assets/images/login_background.jpg');background-size: cover;">-->
+  <a class="navbar-brand" href="#"><img src="assets/images/Orange.svg" style="widows: 80px;height:80px"></a>
+
+  <div class="container col-lg-10"   style="margin-left: 60px;" >
+    
+    <h1 class="text-center"><img src="assets/images/object_login.jpg">Login-Custom Center(CX)</h1>
+    <div class="card" style="background-image: url('assets/images/login_background.jpg'); background-size: cover;height: 350px;">
       <div class="card-body">
         <form class="form-group" (ngSubmit)="handleLogin(form)">
           <div class="alert alert-warning" *ngIf='invalidLogin'>{{errorMessage}}</div>
           <div class="alert alert-success" *ngIf='loginSuccess'>{{successMessage}}</div>
           <div class="form-group">
             <label for="email">User Name :</label>
-            <input type="text" class="form-control" id="username" [(ngModel)]="userModel.username" placeholder="Enter User Name"
-              name="username">
+            <input type="text"  id="username" [(ngModel)]="userModel.username" placeholder="Enter User Name"
+              name="username" >
           </div>
           <div class="form-group">
-            <label for="pwd">Password:</label>
-            <input type="password" class="form-control" [(ngModel)]="userModel.password" id="password" placeholder="Enter password"
+            <label for="pwd"> Password    :   </label>
+            <input type="password"  [(ngModel)]="userModel.password" id="password" placeholder="Enter password"
               name="password">
           </div>
-          <button  class="btn btn-success">Login</button>
-          <li> <a class="nav-item nav-link" href="/register">Register</a></li>
+          <button   style="margin-left: 200px;size: 1px;">Login</button>
+          <!--<li> <a class="nav-item nav-link" href="/register">Register</a></li>-->
 
         </form>
       </div>
     </div>
   </div>
+<!--</body>-->

@@ -77,7 +77,7 @@ export class LoginComponent implements OnInit {
       this.successMessage = 'Login Successful.';
      this.authenticationService.registerSuccessfulLogin(this.userModel.username,this.userModel.password);
       //localStorage.setItem('user', JSON.stringify({login : result.user.username}));
-      this.router.navigate(['/customers']);
+      this.router.navigate(['/hello']);
     }, () => {
       this.invalidLogin = true;
      // console.log(result);

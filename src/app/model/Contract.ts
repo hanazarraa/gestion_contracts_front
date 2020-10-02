@@ -3,11 +3,13 @@ import Offer from './Offer';
 import Customer from './Customer';
 import Market from './Marke';
 import { ContractPhoneNumber } from './ContractPhoneNumber';
+import { Service } from './Service';
 export  class Contract {
     id: string;
     customer: Customer;
-    status:boolean;
+    status:string;
     offer:Offer;
+    services:[Service];
     market:Market;
     contractsphonenumbers: [ContractPhoneNumber];
     /*Contract(customer,status,offer,market,phone_numbers){

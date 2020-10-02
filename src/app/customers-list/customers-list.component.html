@@ -1,4 +1,4 @@
-<div class="panel panel-primary">
+<div class="panel panel-primary" >
     <app-menu></app-menu>
     <div class="panel-heading">
       <h2 style="margin-left: 10px;">Customers List</h2>
@@ -6,23 +6,7 @@
     <div class="panel-body">
         <button class="btn btn-danger"  (click)="addCustomer()" style="margin-bottom: 10px;margin-left:10px"> Add Customer</button>
        <br>
-   <!----    <div class="col-md-8">
-       <div class="input-group mb-3">
-
-       <input type="text" class="form-control" placeholder="Search by firstname" name="firstname"         [(ngModel)]="firstname"
-       />
-     <input type="text" class="form-control" name="lastname" placeholder="Search by lastname" style="margin-left:  10px;"/>
-     <input type="text" class="form-control" name="cin" placeholder="Search by cin" style="margin-left:  10px;"/>
-
-       <div class="input-group-append">
-
-        <button
-          class="btn btn-outline-secondary" type="button" (click)="search()">
-          Search
-        </button>
-      </div>
-       </div>
-    </div>-->
+  
     <div class="search-hero">
       <input class="form-control" type="text" name="search" [(ngModel)]="searchText"  placeholder="&#61442;  Start searching for a customer by firstname or lastname or Address or cin">
     </div>

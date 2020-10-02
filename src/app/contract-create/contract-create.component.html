@@ -30,10 +30,20 @@
                   <ng-select [items]="customers"
                   bindLabel="cin"
                   [searchFn]="searchMe"
-                  placeholder="Select customer"
-                  [(ngModel)]="contractModel.customer" name="customer" id="customer" (change)="getCustomer()">
-       </ng-select>
-    </div>   
+                  placeholder="Select the CIN"
+                  [(ngModel)]="contractModel.customer" name="cin" id="cin" (change)="getCustomer()">
+                 </ng-select>
+                  </div>  
+                  <!--<div class="form-group">
+                    <label for="customer" class="contol-label">Enter the First name</label>
+
+                    <input type="text" class="form-control" id="fname" [(ngModel)]="contractModel.customer.fname" placeholder="Enter First Name"
+                      name="fname" (change)="getFname()">
+
+                  
+                  </div>  
+                  <button (click)="recherche()"   mat-stroked-button class="btn btn-primary"  style="margin-right: 10px;margin-bottom: 30px;">Search</button>-->
+
     <div *ngIf="contractModel.customer" class="card-body">
     <div>
       <label><b>First Name:  </b></label> {{contractModel.customer.fname}}
@@ -80,8 +90,18 @@
                       placeholder="Select offer"
                       [(ngModel)]="contractModel.offer"
                       name="offer"
-                      id="offer">
+                      id="offer" (change)="getOffer()" >
                      </ng-select>
+                    </div>
+                    <div class="form-group">
+                      <label for="customer" class="contol-label">Select the services</label>
+    
+                     <div *ngFor="let data of services; let i=index">
+                      <label>
+                        <input  type="checkbox" [value]="data.id" id="services" name="services" (change)="onCheckboxChange($event)" />
+                        {{data.name}}
+                      </label>
+                    </div>
                     </div>   
                   </app-slider>
                   <app-slider *ngIf="current === 3" [left]="isLeftTransition(3)">
@@ -97,8 +117,8 @@
                      </ng-select>
                     </div>   
                   </app-slider>
-                  Current: {{current}}<br/>
-                  Prev: {{prev}} <br/>
+                  <!--Current: {{current}}<br/>
+                  Prev: {{prev}} <br/>-->
                 
                   <button (click)="onPrev()" [disabled]="current===0"  mat-stroked-button class="btn btn-primary"  style="margin-right: 10px;">Prev</button>
 

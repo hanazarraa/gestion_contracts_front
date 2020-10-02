@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 import  {Contract}  from '../model/Contract';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CustomerService } from '../service/customer.service';
-import { FormBuilder } from "@angular/forms";
 import { OfferService } from '../service/offer.service';
 import { error } from 'protractor';
 import { PhoneNumberService } from '../service/phone-number.service';
@@ -13,6 +12,7 @@ import { ContractPhoneNumber } from '../model/ContractPhoneNumber';
 import { ContractPhonenumberService } from '../service/contract-phonenumber.service';
 import { Observable } from 'rxjs';
 import { PhoneNumber } from '../model/PhoneNumber';
+import { ServiceService } from '../service/service.service';
 
 @Component({
   selector: 'app-contract-create',
@@ -33,6 +33,8 @@ export class ContractCreateComponent implements OnInit {
   contractModel=new Contract();
   PhoneNumberModel =new PhoneNumber();
    customers:any;
+   checkArray:any;
+   services:any;
    customer:any;
    offer:any;
    searchTerm:string;
@@ -42,24 +44,34 @@ export class ContractCreateComponent implements OnInit {
    markets:any;
    selected="fixe"
    c:any;
+  
    market:any;
+   fname:any;
   current = 0;
   prev = -1;
+  offerServiceModel:OfferService;
   getCustomer(){
     console.log(this.contractModel.customer);
-    /*this.customerService.getCustomerById(this.contractModel.customer.id)
-    .subscribe(data => {
-      console.log(data)
-      this.customer = data;
-      console.log(this.customer);
-    }, error => console.log(error));*/
-    
+     
+  }
+  getFname(){
+    console.log(this.contractModel.customer);
+  }
+  recherche(){
+    console.log(this.contractModel.customer.fname);
   }
   onSubmit(form:FormGroup){
-  // console.log(form);
-   //console.log(this.PhoneNumberModel);
-   //this.contractPhoneNumberModel.phoneNumber=this.PhoneNumberModel;
+    /*console.log( this.contractForm.value.checkArray);
+    this.contractForm.value.checkArray.forEach(function(s){
+      this.serviceService.getServiceById(s)
+      .subscribe(data=>{
+        this.offerServiceModel.service=data;
+        this.offerServiceModel.offer=this.contractModel.offer;
 
+
+      });
+        
+      });*/
    this.contractPhoneNumberModel.contract=this.contractModel;
    console.log(this.contractPhoneNumberModel);
    this.contractService.save(this.contractModel)
@@ -80,47 +92,7 @@ export class ContractCreateComponent implements OnInit {
       error=>{
         console.log(error);
       });
-  //
-   //console.log(this.contractPhoneNumberModel);
-   //this.contractModel.contractsphonenumbers.push(this.contractPhoneNumberModel);
-   /*this.contractService.save(this.contractModel)
-  
-     .subscribe(
-         data => {
-           console.log(data);
-           this.contractPhoneNumberModel.contract=data;
-           console.log(this.contractPhoneNumberModel.phoneNumber.id);
-           
-           /*this.contractPhoneNumberService.save(this.contractPhoneNumberModel)
-           .subscribe(
-            data=>{
-              this.c=data;
-              console.log(data);
-            },
-            error=>{
-              console.log(error);
-            }
-          );*/
 
-           /*this.contractPhoneNumberService.save(this.contractPhoneNumberModel)
-                .subscribe(
-                  data=>{
-                    console.log(data);
-                    console.log("success")
-                  }
-                  ,error=>{console.log(error);
-                  }
-                );*/
-
-           //console.log("success");
-           //  this.alertService.success('Registration successful', true);
-            // this.router.navigate(['/customers']);
-      //   },
-       //  error => {
-          // console.log(error);
-          //  // this.alertService.error(error);
-        //     this.loading = false;
-       //  });
     
 
   }
@@ -139,8 +111,19 @@ export class ContractCreateComponent implements OnInit {
    
   }
   getMarket(){
-    //console.log(this.contractModel.market);
-    
+   console.log(this.contractModel.market);
+   console.log(this.contractModel.market.offers);
+   /* this.offerService.findByMarket(this.contractModel.market)
+                      .subscribe(
+                       data=>{
+                          this.offers=data;
+                          console.log(data);
+                        },
+                        error=>{
+                          console.log(error);
+                        }
+                      );*/
+
     //this.offersMarket=this.contractModel.market.offers;
   }
   changeMarket(value){
@@ -150,18 +133,41 @@ export class ContractCreateComponent implements OnInit {
   isLeftTransition(idx: number): boolean {
     return this.current === idx ? this.prev > this.current : this.prev < this.current;
   }
- constructor(  private route: ActivatedRoute,
+ constructor(  private fb: FormBuilder,
+    private route: ActivatedRoute,
     private router: Router,
     private customerService:CustomerService,
     private offerService :OfferService,
     private phoneNumberService:PhoneNumberService,
     private marketService:MarketService,
     private contractService:ContractService,
-    private contractPhoneNumberService:ContractPhonenumberService
+    private contractPhoneNumberService:ContractPhonenumberService,
+    private serviceService:ServiceService
     
    ) { 
+    this.contractForm = this.fb.group({
+      checkArray: this.fb.array([]),
+    });
 
  
+}
+onCheckboxChange(e) {
+  const checkArray: FormArray = this.contractForm.get('checkArray') as FormArray;
+
+  if (e.target.checked) {
+   // console.log(e.target.value);
+    checkArray.push(new FormControl(e.target.value));
+  } else {
+    let i: number = 0;
+    checkArray.controls.forEach((item: FormControl) => {
+      if (item.value == e.target.value) {
+        checkArray.removeAt(i);
+        return;
+      }
+      i++;
+    });
+  }
+  //console.log(checkArray.value);
 }
 searchMe(searchTerm: string, eachObject) {
   console.log(searchTerm);
@@ -196,9 +202,21 @@ searchPhone(searchTerm: string, eachObject) {
   }
   return false
 }
-
+getOffer(){
+  console.log(this.contractModel.offer);
+    this.serviceService.findServicesByOffer(this.contractModel.offer.id)
+    .subscribe(data =>{
+       this.services=data;
+      console.log(data);
+   },
+       error=>{
+       console.log(error);
+    });
+  
+}
 
   ngOnInit(): void {
+   
     console.log(this.contractModel);
     this.customerService.findAll()
       .subscribe(
@@ -215,16 +233,7 @@ searchPhone(searchTerm: string, eachObject) {
         error => {
           console.log(error);
      });
-     this.offerService.findAll()
-     .subscribe(
-       data=>{
-         this.offers=data;
-         console.log(data);
-       },
-       error=>{
-         console.log(error);
-       }
-     );
+   
      this.phoneNumberService.findFreePhoneNumbers()
      .subscribe(
        data=>{
@@ -247,6 +256,8 @@ searchPhone(searchTerm: string, eachObject) {
          console.log(error);
        }
      );
+    
+     
   }
   
 

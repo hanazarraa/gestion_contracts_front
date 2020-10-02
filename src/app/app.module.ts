@@ -32,6 +32,7 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { ContractListComponent } from './contract-list/contract-list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +51,8 @@ import { MatSelectModule } from '@angular/material/select';
     CustomerUpdateComponent,
     CustomerSearchComponent,
     ContractCreateComponent,
-    SliderComponent
+    SliderComponent,
+    ContractListComponent
   ],
   imports: [
     FormsModule,
