@@ -45,30 +45,34 @@ export class ContractListComponent implements OnInit {
         data => {
           this.contracts= data;
           console.log(data);
+          this.contracts.forEach(contract=>{
+           console.log(contract.offer);
+          });
          // location.reload();
         },
         error => {
           console.log(error);
-        });
+        }); 
   
   }
-  customerUpdate(id:any){
+  addContract(){
+    this.router.navigate(['contracts/create']);
+  }
+  contractUpdate(id:any){
     console.log(id);
     this.router.navigate(['customers/update', id]);
 
   }
-  addCustomer(){
-    this.router.navigate(['customers/create']);
-  }
-  /*customerDelete(id:any){
-    this.customerService.deleteCustomer(id)
+  
+  contractDelete(id:any){
+   /* this.contractService.deleteContract(id)
     .subscribe(data => {
       console.log("deleted");
       location.reload();
     
-    }, error => console.log(error));
+    }, error => console.log(error));*/
    
-  }*/
+  }
   /*customerDetails(id: any){
     console.log(id);
     this.router.navigate(['customers/details', id]);

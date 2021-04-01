@@ -4,7 +4,7 @@
       <h2 style="margin-left: 10px;">Contracts List</h2>
     </div>
     <div class="panel-body">
-        <button class="btn btn-danger"   style="margin-bottom: 10px;margin-left:10px"> Add Contract</button>
+        <button class="btn btn-danger"   style="margin-bottom: 10px;margin-left:10px" (click)="addContract()"> Add Contract</button>
        <br>
   
    <!---- <div class="search-hero">
@@ -13,22 +13,25 @@
       <table class="table table-striped">
         <thead>
           <tr>
+            <th>Offer</th>
             <th>Customer</th>
-           <!---- <th>Offer</th>
-            <th>Market</th>
-            <th>Status</th>-->
+             <!--<th>Market</th>-->
+            <th>Status</th>
             
             
             
           </tr>
         </thead>
         <tbody>
-          <tr  *ngFor="let contract of contracts ">
+          <tr  *ngFor="let contract of contracts  ">
             <!--<td> {{contract.id}}</td>
             <td>{{contract.offer.offerDescription}}</td>
             <td>{{contract.offer.market.marketDescription}}</td>
             <td>{{contract.status}}</td>-->
-            <td>{{contract.contract_id}}</td>
+            <td>{{contract.offer.offerDescription}}</td>
+            <td>{{contract.customer.fname}} {{contract.customer.lastname}}</td>
+           <!---- <td>{{contract.offer.market.marketDescription}}</td>-->
+            <td>{{contract.status}}</td>
             <td><button class="btn btn-danger">Delete</button>
                 <button  class="btn btn-info" style="margin-left: 10px;/*width:70px;height:27px;*/" >Update</button>
                 <button  class="btn btn-info" style="margin-left: 10px" >Details</button>

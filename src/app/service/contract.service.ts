@@ -21,4 +21,12 @@ export class ContractService {
   public save(contract: Contract) {
     return this.http.post<any>(this.contractsUrl+"/create", contract);
   }
+  updateContract(id:any,contract:any):Observable<any>{
+    return this.http.put(`${this.contractsUrl}/${id}`,contract);
+
+  }
+  deleteContract(id:any):Observable<any>{
+    return this.http.delete(`${this.contractsUrl}/${id}`);
+
+  }
 }

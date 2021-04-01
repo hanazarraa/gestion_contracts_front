@@ -5,6 +5,6 @@ export default class Offer {
     id: string;
     market:Market;
     offerDescription:string;
-    contracts:[Contract];
+   // contracts:[Contract];
    
 }

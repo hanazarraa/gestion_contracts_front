@@ -83,7 +83,7 @@ export class ContractCreateComponent implements OnInit {
         .subscribe(
           data=>{
             console.log(data);
-
+            this.router.navigate(['/contracts']);
           },error=>{
             console.log(error);
           }
